@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<style type="text/css">
+  html, body { height: 100%; margin: 0; padding: 0; }
+    #googleMap { height: 100%; width:100%; }
+    </style>
+
+
+
+
+</head>
+
+<body>
+<div id="googleMap"></div>
+<input type="range" name="points" min="0" max="10" style="z-index:10; position:fixed;">
+
+<script>
+
+function showPosition(position) {
+
+    var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    var new_coords = new google.maps.LatLng(position.coords.latitude+0.0005, position.coords.longitude);
+    var mapProp = {
+        center:coords,
+        disableDefaultUI:true,
+        zoom:17,
+        mapTypeId:google.maps.MapTypeId.ROADMAP
+    };
+    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    
+
+      
+    var marker = new google.maps.Marker({
+        position: coords,
+        animation:google.maps.Animation.BOUNCE,
+        map: map,
+        title:"You are here!"
+    });
+
+
+    
+    var myTrip=[coords,new_coords];
+    var flightPath=new google.maps.Polyline({
+          path:myTrip,
+            strokeColor:"#0000FF",
+              strokeOpacity:0.8,
+                strokeWeight:2
+                  });
+
+    flightPath.setMap(map);
+
+
+
+    var myCity = new google.maps.Circle({
+          center:coords,
+          radius:200,
+          strokeColor:"#0000FF",
+          strokeOpacity:0.8,
+          strokeWeight:2,
+          fillColor:"#0000FF",
+          fillOpacity:0.4
+    });
+    myCity.setMap(map);
+
+
+}
+
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+} else { 
+    alert("Geolocation is not supported by this browser.");
+}
+
+</script>
+
+</body>
+
+</html> 
+
