@@ -74,7 +74,7 @@ while lat <= north:
 fout.close()
 print("all_place_set = " + str(len(all_place_set)))
 
-fout = open("all_place_set.txt","wt")
+fout = open("all_taipeiPlaceID_set.txt","wt")
 fout.write(str(all_place_set))
 fout.close()
 
