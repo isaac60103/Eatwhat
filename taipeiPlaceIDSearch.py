@@ -1,4 +1,8 @@
 # it will search taipei every restaurant placeID
+# type: (food|restauran|meal_takeaway|meal_delivery|bakery|cafe) 
+# input:  None
+# output:   all_taipeiPlaceID_set.txt (have taipei restaurant placeID)
+#           exception.txt (error message))
 # Example: placeID
 
 import json
